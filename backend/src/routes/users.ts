@@ -87,37 +87,3 @@ users.post("/signin",zValidator('json', userSchema), async(c) => {
 })
 
 
-users.use('/blog/*', async (c:any, next) => {
-    const pretoken = c.req.header("Authorization");
-  if (!pretoken){ 
-    c.status(401);
-    return c.json({ error: "Access Denied" })};
-  const token = pretoken.split(" ")[1];
-
-  try {
-    const verifiedToken = await verify(token, c.env.JWT_SECRET);
-    if (verifiedToken.id){
-        c.set('id', verifiedToken.id);
-        await next();
-    }else{
-        c.json({error: "Invalid token"});
-    }
-  } catch (err) {
-    return c.res.text("Invalid token");
-  }
-})
-
-
-users.post("/blog", async(c:any) => {
-	console.log(c.get('id'));
-	return c.text('signin route')
-});
-
-users.put("/blog", async(c) => {
-
-    return c.text("Hello Hono!");
-});
-
-users.get("/blog/:id", (c) => {
-    return c.text("Hello Hono!");
-});
