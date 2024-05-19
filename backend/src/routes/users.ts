@@ -5,6 +5,8 @@ import { Hono } from "hono";
 import { z } from 'zod'
 import { zValidator } from '@hono/zod-validator'
 import { sign, verify } from "hono/jwt";
+import {userType} from "@harsh_duche/mediumtypes"
+import { use } from "hono/jsx";
 
 export const users = new Hono<
 {
@@ -18,13 +20,16 @@ export const users = new Hono<
 
 
 const userSchema = z.object({
+    name:z.string().max(50).optional(),
     email: z.string().email(),
     password: z.string().min(6, {message: "Password must be at least 6 characters long"}),
 })
 
 
+
 users.post("/signup",zValidator('json', userSchema), async(c) => {
 
+    userSchema.parse(c.req.valid('json'))
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
@@ -39,10 +44,12 @@ users.post("/signup",zValidator('json', userSchema), async(c) => {
         }
     })
     if (userExists) {
+        c.status(401)
         return c.json({error: "User already exists"});
     }
   const user = await prisma.user.create({
     data: {
+        name: parsedData.name,
         email: parsedData.email,
         password: parsedData.password
     }

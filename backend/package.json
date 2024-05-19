@@ -4,7 +4,9 @@
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
+    "@harsh_duche/mediumtypes": "^1.0.0",
     "@hono/zod-validator": "^0.2.1",
+    "@mediumblogs/commontypes": "^1.0.0",
     "@prisma/client": "^5.13.0",
     "@prisma/extension-accelerate": "^1.0.0",
     "argon2": "^0.40.1",
