@@ -72,7 +72,7 @@ blogs.post("/", zValidator("json", blogSchema), async (c) => {
   }
 });
 
-blogs.put("/", zValidator("json", updateBlogSchema), async (c) => {
+blogs.put("/update", zValidator("json", updateBlogSchema), async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
