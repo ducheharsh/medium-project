@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Blog } from "../components/Blog"
-import { blogType } from "@harsh_duche/mediumtypes"
+
 import { BlogsSkeleton } from "../components/BlogsSkeleton"
 
 export function useFetchBlog(){
