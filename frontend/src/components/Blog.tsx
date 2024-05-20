@@ -38,7 +38,7 @@ export function Blog({title, content,id, authorName, createdAt}:BlogProps){
         </div>
         <div className="mb-8 mt-6">
         <h1 className="text-2xl mb-3 font-bold">{title}</h1>
-        <p className="font-serif font-light text-slate-800 mt-2">{content.length < 100? content: content.slice(0, 100) + " ..."}</p>
+        <p className="font-serif w-max-2/3 font-light text-slate-800 mt-2">{content.length < 100? content: content.slice(0, 100) + " ..."}</p>
         </div>
         <div className=" mb-10 font-semibold text-sm text-slate-500 mt-2">{Math.ceil((word/200))} min read </div>
     </div>
