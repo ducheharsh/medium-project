@@ -20,10 +20,11 @@ export function Blog({title, content,id, authorName, createdAt}:BlogProps){
         }
     }
     const word:any = numberOfWords(content)
-    return <div className="p-4" onClick={()=>{
+    return <div className=" px-52 grid grid-cols-3" onClick={()=>{
         window.location.href = `/blogs/${id}`
-    }}>
-        <div className="flex max-w-2/3">
+    }}><div className="col-span-2">
+        <div>
+        <div className="flex max-w-2/3 mt-4">
         <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full ">
     <span className="font-medium text-gray-600 ">{authorName? authorName[0]: "J"}</span>
 </div>
@@ -35,13 +36,21 @@ export function Blog({title, content,id, authorName, createdAt}:BlogProps){
 {dt.toDateString()}
 </div>
         </div>
-        <div className="mb-8 mt-3">
+        <div className="mb-8 mt-6">
         <h1 className="text-2xl mb-3 font-bold">{title}</h1>
         <p className="font-serif font-extralight text-slate-800 mt-2">{content.length < 100? content: content.slice(0, 100) + " ..."}</p>
         </div>
         <div className=" mb-10 font-semibold text-sm text-slate-500 mt-2">{Math.ceil((word/200))} min read </div>
-
-        <hr className="mt-3"></hr>
     </div>
+    
+    </div>
+    <div>
+        <img src="https://png.pngtree.com/png-vector/20221008/ourmid/pngtree-writing-blog-concept-hand-drawn-isolated-vector-isolated-first-flight-vector-png-image_39548768.png" alt="Blog" className="w-50 h-40 rounded-md mt-16"></img>
+    </div>
+    <hr className="mt-3 col-span-3"></hr>
+
+</div>
+
+
 
 }

@@ -91,6 +91,8 @@ function LeftCol() {
                 const pretoken = msg.data.token
                 const token = "Bearer " + pretoken
                 localStorage.setItem("token", token)
+                localStorage.setItem("name", name)
+                localStorage.setItem("email", email)
                 navigate("/Blogs")
                 }
               })

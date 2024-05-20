@@ -4,11 +4,18 @@ import { Subheading } from "../components/subheading";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userType } from "@harsh_duche/mediumtypes";
 
 
 export function SignIn() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/Blogs");
+    }
+  },[])
   return (
     <div className="grid grid-cols-2 h-screen">
       <div>
@@ -83,7 +90,9 @@ function LeftCol() {
                 const pretoken = msg.data.token
                 const token = "Bearer " + pretoken
                 localStorage.setItem("token", token)
-                navigate("/Blogs")
+                localStorage.setItem("name", msg.data.name)
+                localStorage.setItem('email',msg.data.email)
+                navigate("/blogs")
                 }
               })
             }catch(err){
@@ -110,4 +119,5 @@ function Quote() {
       </div>
     </div>
   );
+
 }

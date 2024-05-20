@@ -58,7 +58,9 @@ users.post("/signup",zValidator('json', userSchema), async(c) => {
   const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
     return c.json({
         msg: "User created successfully",
-        token: jwt
+        token: jwt,
+        name:user.name,
+        email:user.email
     });
 
 }catch (e) {
@@ -86,7 +88,9 @@ users.post("/signin",zValidator('json', userSchema), async(c) => {
         const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
         return c.json({
             msg: "User logged in successfully",
-            token: jwt
+            token: jwt,
+            name:user.name,
+            email:user.email
         });
     }catch (e) {
         return c.json({error: "An error occurred while logging in"});

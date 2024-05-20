@@ -1,12 +1,23 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export function CreateBlog(){
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
+
+
+    const navigate = useNavigate()
+    const [title, setTitle] = useState(localStorage.getItem('title') || "")
+    const [content, setContent] = useState(localStorage.getItem('content') || "")
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
     const [loading, setLoading] = useState(false)
+
+
+    useEffect(() => {
+        
+        localStorage.setItem("content", content)
+    },[ content])
+
     const createBlog = async () => {
         try{
             setLoading(true)
@@ -19,17 +30,20 @@ export function CreateBlog(){
                 }
             })
             setSuccess("Blog Created Successfully")
+            localStorage.removeItem("title")
+            localStorage.removeItem("content")
+            navigate('/blogs')
             setLoading(false)
         }catch(err:any){
             setError(err.response.data.message)
             setLoading(false)
         }
     }
-    return <div className="p-24">
+    return <div className="px-24">
 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="126.000000pt" height="126.000000pt" viewBox="0 0 1200.000000 1200.000000"
- preserveAspectRatio="xMidYMid meet" className="absolute right-44 top-4 opacity-30">
+ preserveAspectRatio="xMidYMid meet" className=" z-0 absolute right-44 top-3 opacity-30">
 
 <g transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)"
 fill="#000000" stroke="none">
@@ -98,10 +112,14 @@ m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 </svg>
 
-            <input placeholder={"Title"} value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-6xl font-bold"></input>
+            <input placeholder={"Title"} value={title} onChange={(e) => {setTitle(e.target.value)
+                localStorage.setItem("title", e.target.value)}
+            } className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-6xl font-bold"></input>
         </div>
         <div className="mt-6">
-            <textarea placeholder="Tell your story ..." value={content} onChange={(e) => setContent(e.target.value)} className="w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-2xl rounded-lg ml-20 h-screen "></textarea>
+            <textarea placeholder="Tell your story ..." value={content} onChange={(e) => { setContent(e.target.value),
+                localStorage.setItem("content", e.target.value)}
+            } className="w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-2xl rounded-lg ml-20 h-screen "></textarea>
         </div>
 
         {error && <div className="mt-6 p-4 bg-red-200 text-red-800 rounded-lg">{error}</div>}
