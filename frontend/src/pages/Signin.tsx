@@ -21,7 +21,7 @@ export function SignIn() {
       <div>
         <LeftCol />
       </div>
-      <div className="invisible md:visible">
+      <div className="hidden md:block">
         <Quote />
       </div>
     </div>
@@ -36,7 +36,7 @@ function LeftCol() {
 
   return (
     <div className="col-span-1 flex justify-center items-center h-screen">
-      <div className=" flex flex-col justify-center h-1/2 w-1/2 ">
+      <div className=" flex flex-col justify-center h-1/2 w-full md:w-1/2 m-6 ">
         <div className="flex flex-col justify-center items-center">
           <div className="mb-2">
             <Heading label="Login here" />

@@ -1,5 +1,5 @@
 export function BlogsSkeleton(){
-    return <div className=" px-52 grid grid-cols-3"><div className="col-span-2">
+    return <div className="  max-w-3xl grid grid-cols-3 3"><div className="col-span-2">
         <div>
         <div className="flex max-w-2/3 mt-4">
         <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full ">
@@ -27,7 +27,7 @@ export function BlogsSkeleton(){
         
 
         <svg
-          className=" w-50 h-40 ml-5 rounded-md mt-16 text-gray-200 animate-pulse "
+          className=" w-50 h-40 ml-5 rounded-md mt-16 text-gray-200 animate-pulse hidden md:block "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -39,5 +39,4 @@ export function BlogsSkeleton(){
     <hr className="mt-3 col-span-3"></hr>
 
 </div>
-
 }

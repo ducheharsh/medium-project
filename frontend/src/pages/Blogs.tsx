@@ -28,9 +28,9 @@ export function Blogs(){
     console.log(Blogs)
     
     if(loading){
-        return <div className="px-36 pt-5"><BlogsSkeleton/><BlogsSkeleton/><BlogsSkeleton/><BlogsSkeleton/></div>
+        return <div className="flex flex-col justify-center items-center pt-5 px-4"><BlogsSkeleton/><BlogsSkeleton/><BlogsSkeleton/><BlogsSkeleton/></div>
     }else{
-    return <div className="px-36 pt-5">
+    return <div className="flex flex-col justify-center items-center pt-5 px-4">
         {Blogs.map((blog:any) => <Blog authorName={blog.author.name} id={blog.id} createdAt={blog.createdAt} title={blog.title} content={blog.content}/>) }
     </div>
     }
