@@ -15,9 +15,12 @@ interface BlogType {
 
 export function BlogPage(){
     const navigate = useNavigate()
-    if(!localStorage.getItem("token")){
-       navigate('/signin')
-    }else{
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/Blogs");
+        }
+      },[])
 
 
     const {id} = useParams()
@@ -72,6 +75,6 @@ export function BlogPage(){
   
        </div>
     </div>
-    }
+    
 
 }

@@ -25,9 +25,12 @@ export function useFetchBlog(){
 
 export function Blogs(){
     const navigate = useNavigate()
-    if(!localStorage.getItem("token")){
-       navigate('/signin')
-    }else{
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/Blogs");
+        }
+      },[])
 
     const {Blogs, loading} = useFetchBlog()
 
@@ -39,5 +42,5 @@ export function Blogs(){
         {Blogs.map((blog:any) => <Blog authorName={blog.author.name} id={blog.id} createdAt={blog.createdAt} title={blog.title} content={blog.content}/>) }
     </div>
     }
-}
+
 }
