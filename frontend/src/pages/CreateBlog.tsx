@@ -39,11 +39,14 @@ export function CreateBlog(){
 
         }
     }
-    return <div className="px-24">
+    return <div className="max-w-2/3 md:px-24 pt-10 md:pt-20 px-3">
+
+
+
 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="126.000000pt" height="126.000000pt" viewBox="0 0 1200.000000 1200.000000"
- preserveAspectRatio="xMidYMid meet" className=" z-0 absolute right-44 top-3 opacity-30">
+ width="130.000000pt" height="130.000000pt" viewBox="0 0 1200.000000 1200.000000"
+ preserveAspectRatio="xMidYMid meet" className="hidden md:block z-0 absolute right-44 top-0 opacity-30">
 
 <g transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)"
 fill="#000000" stroke="none">
@@ -103,10 +106,18 @@ m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
 </g>
 </svg>
 
-
-<button type="button" className=" flex float-end focus:outline-none text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={()=>{
+<div className="flex justify-between">
+<svg onClick={()=>{
+    navigate('/blogs')
+}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" className="w-8 h-8 hover:animate-ping">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+</svg>
+<button type="button" className=" focus:outline-none text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-semibold rounded-full text-md font-sans px-6 py-2.5 me-2 mb-2 " onClick={()=>{
     createBlog()
 }}>Publish</button>
+</div>
+
+
         <div className="mt-6 flex">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.8" stroke="currentColor" className="w-16 h-16 mt-5 text-slate-500">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -114,12 +125,12 @@ m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
 
             <input placeholder={"Title"} value={title} onChange={(e) => {setTitle(e.target.value)
                 localStorage.setItem("title", e.target.value)}
-            } className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-6xl font-bold"></input>
+            } className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-5xl md:text-6xl font-bold"></input>
         </div>
         <div className="mt-6">
             <textarea placeholder="Tell your story ..." value={content} onChange={(e) => { setContent(e.target.value),
                 localStorage.setItem("content", e.target.value)}
-            } className="w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-2xl rounded-lg ml-20 h-screen "></textarea>
+            } className=" w-full md:w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-xl md:text-2xl rounded-lg md:ml-20 h-screen "></textarea>
         </div>
 
         {error && <div className="mt-6 p-4 bg-red-200 text-red-800 rounded-lg">{error}</div>}

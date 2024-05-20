@@ -6,7 +6,7 @@ export function BlogsSkeleton(){
     <div className="font-medium text-gray-600 "><div className="h-3 animate-pulse bg-gray-200 rounded-full mb-4"/></div>
 </div>
 
- <div className="mx-2 mt-2 font-light text-slate-800 mx-4"><div className="h-3 w-16 bg-gray-200 rounded-full mb-4"/></div>
+ <div className=" mt-2 font-light text-slate-800 mx-4"><div className="h-3 w-16 bg-gray-200 rounded-full mb-4"/></div>
 
 
 <div className="mt-2">

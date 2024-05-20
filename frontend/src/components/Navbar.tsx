@@ -7,7 +7,7 @@ export function NavBar(){
     const username = localStorage.getItem('name')
     const email = localStorage.getItem('email')
 return(
-<nav className="bg-white border-gray-200 ">
+<nav className="bg-white border-gray-200 border-b-2">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto mt-1 p-4">
   <a href="" onClick={()=>{
     navigate('/blogs')
@@ -17,7 +17,18 @@ return(
   </a>
   <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
-<div className="relative">
+<div className="relative flex">
+<button type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-semibold rounded-lg text-sm px-5 py-1.5 me-2 hidden md:block " onClick={()=>{
+  navigate('/create')
+}
+}>Create One +</button>
+
+<svg onClick={()=>{
+  navigate('/create')
+}
+} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="block md:hidden w-10 h-10 mt-1 mr-3">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
 
 <img 
         id="avatarButton" 
@@ -28,7 +39,7 @@ return(
         alt="User dropdown"
       />
 
-<div id="userDropdown" className={`z-10 ${dropdownOpen? '': "hidden"} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute`}>
+<div id="userDropdown" className={`z-10 ${dropdownOpen? '': "hidden"} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute top-14 right-2`}>
     <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
       <div>{username}</div>
       <div className="font-medium truncate">{email}</div>

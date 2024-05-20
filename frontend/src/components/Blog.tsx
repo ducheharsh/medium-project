@@ -28,7 +28,7 @@ export function Blog({title, content,id, authorName, createdAt}:BlogProps){
         <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full ">
     <span className="font-medium text-gray-600 ">{authorName? authorName[0]: "J"}</span>
 </div>
-{authorName? <div className="mx-2 mt-2 font-light text-slate-800 mx-4">{authorName}</div>: <div className="mx-2 mt-2 font-light text-slate-800 mx-4">John Doe</div>}
+{authorName? <div className=" mt-2 font-light text-slate-800 mx-4">{authorName}</div>: <div className=" mt-2 font-light text-slate-800 mx-4">John Doe</div>}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 mt-3 mx-1">
   <path fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 </svg>

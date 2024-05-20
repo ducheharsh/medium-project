@@ -39,13 +39,14 @@ export function BlogPage(){
     const date = new Date(blog.createdAt || "")
     console.log(blog.author?.name)
     return <div className="grid grid-cols-3 ">
-        <div className="col-span-2 px-24 mt-10">
+        <div className="col-span-3 md:col-span-2 md:px-24 p-4 mt-10">
        <h1 className="text-6xl font-extrabold max-w-2/3">{blog.title}</h1>
        <h4 className="text-lg mt-5 font-semibold text-slate-500">Posted on {date.toDateString()}</h4>
-       <div className="mt-4 w-auto text-justify text-slate-700 text-2xl font-times-light whitespace-pre-line" >{blog.content}</div>
+       <h4 className="block md:hidden text-lg mt-1 mb-2 font-semibold text-slate-500">by {blog.author?.name}</h4>
+       <div className="mt-4 w-auto text-slate-700 text-2xl font-times-light whitespace-pre-line" >{blog.content}</div>
        </div>
 
-       <div className="col-span-1">
+       <div className="col-span-1 hidden md:block">
        <div className="p-24 mt-6 ">
         <h1 className="font-semibold"> Author</h1>
         <div>
