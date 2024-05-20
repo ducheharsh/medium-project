@@ -72,6 +72,30 @@ blogs.post("/", zValidator("json", blogSchema), async (c) => {
   }
 });
 
+blogs.delete("/delete/:id" ,async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const userId = c.get("userId");
+
+  try{
+    const blog = await prisma.post.delete({
+      where:{
+        id:c.req.param("id"),
+        authorId:userId
+      }
+    
+    });
+    return c.json({
+      msg:"Blog Deleted Successfully"
+    });
+  }catch(e:any){
+    console.log(e);
+    return c.json(e)
+  }
+})
+
 blogs.put("/update", zValidator("json", updateBlogSchema), async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,

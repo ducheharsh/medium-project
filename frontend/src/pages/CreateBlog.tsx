@@ -6,6 +6,10 @@ export function CreateBlog(){
 
 
     const navigate = useNavigate()
+  
+    if(!localStorage.getItem("token")){
+       navigate('/signin')
+    }else{
     const [title, setTitle] = useState(localStorage.getItem('title') || "")
     const [content, setContent] = useState(localStorage.getItem('content') || "")
     const [error, setError] = useState("")
@@ -136,4 +140,5 @@ m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
         {error && <div className="mt-6 p-4 bg-red-200 text-red-800 rounded-lg">{error}</div>}
         {success && <div className="mt-6 p-4 bg-green-200 text-green-800 rounded-lg">{success}</div>}
     </div>
+    }
 }

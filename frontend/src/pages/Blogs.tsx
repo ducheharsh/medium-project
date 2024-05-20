@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Blog } from "../components/Blog"
 
 import { BlogsSkeleton } from "../components/BlogsSkeleton"
+import { useNavigate } from "react-router-dom"
 
 export function useFetchBlog(){
     const [Blogs, setBlogs] = useState([])
@@ -23,9 +24,13 @@ export function useFetchBlog(){
 }
 
 export function Blogs(){
-    console.log("Blogs")
+    const navigate = useNavigate()
+    if(!localStorage.getItem("token")){
+       navigate('/signin')
+    }else{
+
     const {Blogs, loading} = useFetchBlog()
-    console.log(Blogs)
+
     
     if(loading){
         return <div className="flex flex-col justify-center items-center pt-5 px-4"><BlogsSkeleton/><BlogsSkeleton/><BlogsSkeleton/><BlogsSkeleton/></div>
@@ -34,4 +39,5 @@ export function Blogs(){
         {Blogs.map((blog:any) => <Blog authorName={blog.author.name} id={blog.id} createdAt={blog.createdAt} title={blog.title} content={blog.content}/>) }
     </div>
     }
+}
 }

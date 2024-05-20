@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 interface BlogType {
@@ -14,6 +14,10 @@ interface BlogType {
   }
 
 export function BlogPage(){
+    const navigate = useNavigate()
+    if(!localStorage.getItem("token")){
+       navigate('/signin')
+    }else{
 
 
     const {id} = useParams()
@@ -68,5 +72,6 @@ export function BlogPage(){
   
        </div>
     </div>
+    }
 
 }
