@@ -26,7 +26,7 @@ return(
 <svg onClick={()=>{
   navigate('/create')
 }
-} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="block md:hidden w-10 h-10 mt-1 mr-3">
+} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="block md:hidden w-9 h-9 mt-1 mr-3">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 </svg>
 
@@ -34,7 +34,7 @@ return(
         id="avatarButton" 
         typeof="button" 
         onClick={() => setDropdownOpen(!dropdownOpen)} // Toggle dropdown on click
-        className="w-12 h-12 border border-black p-1 rounded-full cursor-pointer" 
+        className="w-10 h-10 md:w-12 md:h-12 border border-black p-1 rounded-full cursor-pointer" 
         src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/599e3b95636919.5eb96c0445ea7.jpg" 
         alt="User dropdown"
       />
