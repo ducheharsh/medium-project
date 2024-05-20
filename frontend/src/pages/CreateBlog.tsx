@@ -10,7 +10,7 @@ export function CreateBlog(){
     const [content, setContent] = useState(localStorage.getItem('content') || "")
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
-    const [loading, setLoading] = useState(false)
+
 
 
     useEffect(() => {
@@ -20,8 +20,8 @@ export function CreateBlog(){
 
     const createBlog = async () => {
         try{
-            setLoading(true)
-            const res = await axios.post("https://backend.ducheharsh.workers.dev/api/v1/blog",{
+
+            await axios.post("https://backend.ducheharsh.workers.dev/api/v1/blog",{
                 title,
                 content,
             },{
@@ -33,10 +33,10 @@ export function CreateBlog(){
             localStorage.removeItem("title")
             localStorage.removeItem("content")
             navigate('/blogs')
-            setLoading(false)
+
         }catch(err:any){
             setError(err.response.data.message)
-            setLoading(false)
+
         }
     }
     return <div className="px-24">

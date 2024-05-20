@@ -18,7 +18,7 @@ export function BlogPage(){
 
     const {id} = useParams()
     const [blog, setBlog] = useState<BlogType>({})
-    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
 
         try{
@@ -29,7 +29,7 @@ export function BlogPage(){
         })
         .then((res) => {
             setBlog(res.data)
-            setLoading(false)
+      
         })
     }catch(err){
         console.log(err)
