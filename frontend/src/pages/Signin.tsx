@@ -86,7 +86,7 @@ function LeftCol() {
                   
                 }else{
                 console.log(msg),
-                alert("User Created Successfully")
+                alert("Logged in Successfully")
                 const pretoken = msg.data.token
                 const token = "Bearer " + pretoken
                 localStorage.setItem("token", token)

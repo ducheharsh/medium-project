@@ -4,11 +4,18 @@ import { Subheading } from "../components/subheading";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userType } from "@harsh_duche/mediumtypes";
 
 
 export function SignUp() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/Blogs");
+    }
+  },[])
   return (
     <div className="grid grid-cols-2 h-screen">
       <div>
