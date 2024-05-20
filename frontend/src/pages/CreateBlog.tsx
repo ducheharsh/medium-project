@@ -6,7 +6,7 @@ export function CreateBlog(){
     const navigate = useNavigate()
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token) {
+        if (!token) {
           navigate("/signin");
         }
       },[])
