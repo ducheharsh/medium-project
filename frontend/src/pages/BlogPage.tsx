@@ -43,7 +43,7 @@ export function BlogPage(){
        <h1 className="text-6xl font-extrabold max-w-2/3">{blog.title}</h1>
        <h4 className="text-lg mt-5 font-semibold text-slate-500">Posted on {date.toDateString()}</h4>
        <h4 className="block md:hidden text-lg mt-1 mb-2 font-semibold text-slate-500">by {blog.author?.name}</h4>
-       <div className="mt-4 w-auto text-slate-700 text-2xl font-times-light whitespace-pre-line" >{blog.content}</div>
+       <div className="mt-4 w-auto text-slate-700 text-xl md:text-2xl font-times-light whitespace-pre-line" >{blog.content}</div>
        </div>
 
        <div className="col-span-1 hidden md:block">
