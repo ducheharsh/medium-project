@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export function NavBar(){
     const navigate = useNavigate()
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -60,6 +61,7 @@ return(
         localStorage.removeItem('token')
         localStorage.removeItem('name')
         localStorage.removeItem('email')
+        
         navigate('/signin')
       }}>Sign out</a>
     </div>

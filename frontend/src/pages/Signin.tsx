@@ -6,16 +6,28 @@ import { Button } from "../components/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { userType } from "@harsh_duche/mediumtypes";
+import { Spinner } from "../components/spinner";
+
+
 
 
 export function SignIn() {
+  
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/Blogs");
     }
   },[])
+
+  if (loading){
+    return <div className="flex justify-center items-center h-screen"><Spinner/></div>
+  }else{
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
       <div>
@@ -119,5 +131,5 @@ function Quote() {
       </div>
     </div>
   );
-
+}
 }

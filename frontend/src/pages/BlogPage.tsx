@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { BlogPageSkeleton } from "../components/BlogPageSkeleton";
 
 
 interface BlogType {
@@ -15,6 +16,7 @@ interface BlogType {
 
 export function BlogPage(){
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -36,6 +38,7 @@ export function BlogPage(){
         })
         .then((res) => {
             setBlog(res.data)
+            setLoading(false)
       
         })
     }catch(err){
@@ -44,7 +47,10 @@ export function BlogPage(){
     },[])
  
     const date = new Date(blog.createdAt || "")
-    console.log(blog.author?.name)
+
+    if(loading){
+        return <BlogPageSkeleton/>
+    }else{
     return <div className="grid grid-cols-3 ">
         <div className="col-span-3 md:col-span-2 md:px-24 p-4 mt-10">
        <h1 className="text-6xl font-extrabold max-w-2/3">{blog.title}</h1>
@@ -76,5 +82,5 @@ export function BlogPage(){
        </div>
     </div>
     
-
+    }
 }
