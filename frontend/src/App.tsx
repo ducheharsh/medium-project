@@ -18,10 +18,17 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/signin' element={<SignIn/>}/>
       </Routes>
-      <NavBar/>
+
+      
       <Routes>
-      <Route path='/blogs' element={<Blogs/>}/>
-        <Route path='/blogs/:id' element={<BlogPage/>}/>
+      <Route path='/blogs' element={<>
+      <NavBar/>
+      <Blogs/>
+      </>}/>
+        <Route path='/blogs/:id' element={<>
+        <NavBar/>
+        <BlogPage/>
+        </>}/>
         <Route path='/create' element={<CreateBlog/>}/>
       </Routes>
     </BrowserRouter>

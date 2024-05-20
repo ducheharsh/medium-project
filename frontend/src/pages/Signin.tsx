@@ -17,11 +17,11 @@ export function SignIn() {
     }
   },[])
   return (
-    <div className="grid grid-cols-2 h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
       <div>
         <LeftCol />
       </div>
-      <div>
+      <div className="invisible md:visible">
         <Quote />
       </div>
     </div>
@@ -53,7 +53,7 @@ function LeftCol() {
             </a>
           </div>
         </div>
-        <div className="p-7 w-full">
+        <div className="py-1 w-full">
 
           <Input
             id="2"

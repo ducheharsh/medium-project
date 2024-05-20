@@ -17,7 +17,7 @@ export function SignUp() {
     }
   },[])
   return (
-    <div className="grid grid-cols-2 h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
       <div>
         <LeftCol />
       </div>
@@ -38,7 +38,7 @@ function LeftCol() {
     <div className="col-span-1 flex justify-center items-center h-screen">
       <div className=" flex flex-col justify-center h-1/2 w-1/2 ">
         <div className="flex flex-col justify-center items-center">
-          <div className="mb-1">
+          <div className="mb-1 text-center">
             <Heading label="Create an account" />
           </div>
           <div className="flex hover:cursor-pointer hover:underline">
@@ -53,7 +53,7 @@ function LeftCol() {
             </a>
           </div>
         </div>
-        <div className="p-7 w-full">
+        <div className="py-7 w-full">
           <Input
             id="1"
             label="Name"
