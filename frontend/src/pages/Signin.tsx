@@ -78,6 +78,7 @@ function LeftCol() {
           <Input
             id="3"
             label="Password"
+            type="password"
             placeholder="shhhhhh"
             onChange={(e: any) => {
               setPassword(e.target.value);
