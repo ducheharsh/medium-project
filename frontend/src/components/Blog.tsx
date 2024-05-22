@@ -20,7 +20,7 @@ export function Blog({title, content,id, authorName, createdAt}:BlogProps){
         }
     }
     const word:any = numberOfWords(content)
-    return <div className=" grid grid-cols-3 cursor-pointer md:max-w-3xl" onClick={()=>{
+    return <div className=" grid grid-cols-3 cursor-pointer min-w-full md:min-w-min md:max-w-3xl" onClick={()=>{
         window.location.href = `/blogs/${id}`
     }}><div className="col-span-3 md:col-span-2 ">
         <div>
@@ -44,10 +44,11 @@ export function Blog({title, content,id, authorName, createdAt}:BlogProps){
     </div>
     
     </div>
+
     <div>
-        <img src="https://png.pngtree.com/png-vector/20221008/ourmid/pngtree-writing-blog-concept-hand-drawn-isolated-vector-isolated-first-flight-vector-png-image_39548768.png" alt="Blog" className="hidden md:block w-50 h-40 rounded-md mt-16"></img>
+        <img src="https://png.pngtree.com/png-vector/20221008/ourmid/pngtree-writing-blog-concept-hand-drawn-isolated-vector-isolated-first-flight-vector-png-image_39548768.png" alt="Blog" className="hidden md:block w-50 h-40 ml-5 rounded-md mt-16"></img>
     </div>
-    <hr className="mt-3 col-span-3"></hr>
+    <hr className="mt-3 col-span-3 "></hr>
 
 </div>
 
