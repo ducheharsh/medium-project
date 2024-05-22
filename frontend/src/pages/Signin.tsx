@@ -64,7 +64,7 @@ function LeftCol() {
               }}
             >
               <div className="pr-1"><Subheading label="New here? " /></div>
-              <Subheading label="Register here" />
+              <Subheading label="Register now!" />
             </a>
           </div>
         </div>
