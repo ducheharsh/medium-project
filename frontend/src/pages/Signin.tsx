@@ -54,13 +54,14 @@ function LeftCol() {
             <Heading label="Login here" />
           </div>
           <div className="flex hover:cursor-pointer hover:underline">
-            <Subheading label="New here? " />
+            
             <a
-              className="ml-1"
+              className="pl-2 flex "
               onClick={() => {
                 navigate("/Signup");
               }}
             >
+              <div className="pr-1"><Subheading label="New here? " /></div>
               <Subheading label="Register here" />
             </a>
           </div>

@@ -42,13 +42,14 @@ function LeftCol() {
             <Heading label="Create an account" />
           </div>
           <div className="flex hover:cursor-pointer hover:underline">
-            <Subheading label="Aleready have an account? " />
+            
             <a
-              className="ml-1"
+              className="pl-1 flex font-semibold hover:underline"
               onClick={() => {
                 navigate("/Signin");
               }}
             >
+              <div className="pr-1"><Subheading label="Aleready have an account? " /></div>
               <Subheading label="Login" />
             </a>
           </div>
