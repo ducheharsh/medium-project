@@ -6,6 +6,7 @@ import { Button } from "../components/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { userType } from "@harsh_duche/mediumtypes";
+import { ErrorMessage } from "../components/ErrorMessage";
 
 
 export function SignUp() {
@@ -32,6 +33,7 @@ function LeftCol() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [issues, setIssues] = useState([])
   const navigate = useNavigate();
 
   return (
@@ -80,6 +82,12 @@ function LeftCol() {
               setPassword(e.target.value);
             }}
           />
+                   <div className="py-3">
+        
+
+        {(issues.length > 0) ? issues.map((x:any) => <ErrorMessage message={x.message} code={x.path?.[0]}/>) : null}
+                
+            </div>
           <Button
             label="Sumbit"
             onClick={async() => {
@@ -103,13 +111,16 @@ function LeftCol() {
                 localStorage.setItem("name", name)
                 localStorage.setItem("email", email)
                 navigate("/Blogs")
+                setIssues([])
                 }
               })
-            }catch(err){
+            }catch(err:any){
               console.log(err)
+              setIssues(err.response.data.error.issues)
             }
 } }
  />
+
 
 
         </div>

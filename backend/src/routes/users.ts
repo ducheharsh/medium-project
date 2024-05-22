@@ -83,6 +83,7 @@ users.post("/signin",zValidator('json', userSchema), async(c) => {
             }
         })
         if (!user) {
+            c.status(401)
             return c.json({error: "Invalid email or password"});
         }
         const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);

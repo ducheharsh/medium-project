@@ -44,6 +44,7 @@ function LeftCol() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [issues, setIssues] = useState([])
   const navigate = useNavigate();
 
   return (
@@ -85,6 +86,14 @@ function LeftCol() {
               setPassword(e.target.value);
             }}
           />
+
+<div className="py-3">
+        
+
+        {(issues.length > 0) ? issues.map((x:any) => <ErrorMessage message={x.message} code={x.path?.[0]}/>) : null}
+                
+            </div>
+
           <Button
             label="Sumbit"
             onClick={async() => {
@@ -107,10 +116,12 @@ function LeftCol() {
                 localStorage.setItem("name", msg.data.name)
                 localStorage.setItem('email',msg.data.email)
                 navigate("/blogs")
+                setIssues([])
                 }
               })
-            }catch(err){
+            }catch(err:any){
               console.log(err)
+              setIssues(err.response.data.error.issues)
             }
 } }
  />
