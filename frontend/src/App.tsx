@@ -6,6 +6,8 @@ import { Blogs } from './pages/Blogs'
 import { BlogPage } from './pages/BlogPage'
 import { CreateBlog } from './pages/CreateBlog'
 import { NavBar } from './components/Navbar'
+import { Portfolio } from './pages/portfolio'
+
 
 function App() {
  
@@ -18,6 +20,7 @@ function App() {
         <Route path='/' element={<SignIn/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/signin' element={<SignIn/>}/>
+        
       </Routes>
 
       
@@ -32,6 +35,7 @@ function App() {
         </>}/>
         <Route path='/create' element={<CreateBlog/>}/>
       </Routes>
+
     </BrowserRouter>
    
  </>

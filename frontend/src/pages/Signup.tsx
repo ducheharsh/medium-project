@@ -102,33 +102,41 @@ function LeftCol() {
           <Button
             label="Sumbit"
             onClick={async() => {
-            const data:userType ={
-                name:name, 
-                email:email,
-                password:password,
-              }
-            try{
-             await axios.post("https://backend.ducheharsh.workers.dev/api/v1/user/signup",data)
-              .then((msg:any)=>{
-                if (msg.data.error){
-                  alert(msg.data.error)
-                  
-                }else{
-                console.log(msg),
-                alert("User Created Successfully")
-                const pretoken = msg.data.token
-                const token = "Bearer " + pretoken
-                localStorage.setItem("token", token)
-                localStorage.setItem("name", name)
-                localStorage.setItem("email", email)
-                navigate("/Blogs")
-                setIssues([])
+            await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=a3cd78f02b70499aa3deae507bf7a17f&email=${email}`)
+            .then(async(msg:any)=>{
+              if (msg.data.deliverability === "DELIVERABLE"){
+                const data:userType ={
+                  name:name, 
+                  email:email,
+                  password:password,
                 }
-              })
-            }catch(err:any){
-              console.log(err)
-              setIssues(err.response.data.error.issues)
-            }
+              try{
+               await axios.post("https://backend.ducheharsh.workers.dev/api/v1/user/signup",data)
+                .then((msg:any)=>{
+                  if (msg.data.error){
+                    alert(msg.data.error)
+                    
+                  }else{
+                  console.log(msg),
+                  alert("User Created Successfully")
+                  const pretoken = msg.data.token
+                  const token = "Bearer " + pretoken
+                  localStorage.setItem("token", token)
+                  localStorage.setItem("name", name)
+                  localStorage.setItem("email", email)
+                  navigate("/Blogs")
+                  setIssues([])
+                  }
+                })
+              }catch(err:any){
+                console.log(err)
+                setIssues(err.response.data.error.issues)
+              }
+              }else{
+                alert("Invalid Email")
+              }
+            })
+
 } }
  />
 

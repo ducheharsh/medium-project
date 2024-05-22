@@ -36,7 +36,7 @@ return(
         typeof="button" 
         onClick={() => setDropdownOpen(!dropdownOpen)} // Toggle dropdown on click
         className="w-10 h-10 md:w-12 md:h-12 border border-black p-1 rounded-full cursor-pointer" 
-        src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/599e3b95636919.5eb96c0445ea7.jpg" 
+        src={`https://api.dicebear.com/8.x/lorelei/svg?seed=${username}`}
         alt="User dropdown"
       />
 
