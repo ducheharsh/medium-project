@@ -6,7 +6,7 @@ import { Blogs } from './pages/Blogs'
 import { BlogPage } from './pages/BlogPage'
 import { CreateBlog } from './pages/CreateBlog'
 import { NavBar } from './components/Navbar'
-import { Portfolio } from './pages/portfolio'
+
 
 
 function App() {
