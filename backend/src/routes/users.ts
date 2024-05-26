@@ -8,6 +8,7 @@ import { sign, verify } from "hono/jwt";
 import {userType} from "@harsh_duche/mediumtypes"
 import { use } from "hono/jsx";
 
+
 export const users = new Hono<
 {
     Bindings: {
@@ -34,9 +35,12 @@ users.post("/signup",zValidator('json', userSchema), async(c) => {
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
 
+
+
     const parsedData = c.req.valid('json')
     console.log(parsedData);
   
+
   try{
     const userExists = await prisma.user.findFirst({
         where:{
@@ -47,11 +51,15 @@ users.post("/signup",zValidator('json', userSchema), async(c) => {
         c.status(401)
         return c.json({error: "User already exists"});
     }
+
+
+    
+
   const user = await prisma.user.create({
     data: {
         name: parsedData.name,
         email: parsedData.email,
-        password: parsedData.password
+        password:parsedData.password
     }
   })
   console.log(user);
@@ -97,5 +105,7 @@ users.post("/signin",zValidator('json', userSchema), async(c) => {
         return c.json({error: "An error occurred while logging in"});
     }
 })
+
+
 
 

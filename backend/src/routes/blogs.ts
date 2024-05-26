@@ -29,6 +29,7 @@ const updateBlogSchema = z.object({
 
 blogs.use("/*", async (c, next) => {
   const pretoken = c.req.header("Authorization");
+  c.json({ error: "Mogula" });
   if (!pretoken) {
     c.status(401);
     return c.json({ error: "Access Denied" });
@@ -136,9 +137,11 @@ blogs.get("/bulk", async (c) => {
         title:true,
         content:true,
         createdAt:true,
+        likedBy:true,
         author:{
           select:{
             name:true,
+            likedPosts:true
           }
         }
       }
@@ -170,9 +173,11 @@ blogs.get("/:id", async (c) => {
         title:true,
         content:true,
         createdAt:true,
+        likedBy:true,
         author:{
           select:{
             name:true,
+          
           }
         }
       }
@@ -180,5 +185,57 @@ blogs.get("/:id", async (c) => {
     return c.json(blog);
   } catch (e) {
     return c.text("Unable to locate your blog");
+  }
+});
+
+blogs.post("/likepost/:id", async(c)=>{
+  const userId = c.get("userId")
+  console.log(userId)
+  const postId = c.req.param("id")
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());  
+
+
+  try {
+    const alreadyLiked = await prisma.user.findFirst({
+      where: {
+        id: userId,
+        likedPosts: {
+          some: {
+            id: postId
+          }
+        }
+      }
+    });
+
+    if (alreadyLiked) {
+      const post = await prisma.post.update({
+        where: { id: postId },
+        data: {
+          likedBy: {
+            disconnect: { id: userId },
+          },
+        },
+      });
+      return c.json({ msg: 'disliked' });
+    }
+
+    const post = await prisma.post.update({
+      where:{
+        id:postId
+      },
+      data:{
+        likedBy:{
+          connect:{id: userId}
+        }
+      },
+    });
+
+    return c.json(post);
+  } catch (e) {
+    console.error(e);
+    c.status(400);
+    return c.text("Unable to like the post");
   }
 });

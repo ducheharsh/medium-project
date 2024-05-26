@@ -11,6 +11,7 @@ exports.blogSchema = zod_1.default.object({
     content: zod_1.default.string(),
     authorName: zod_1.default.string(),
     createdAt: zod_1.default.string(),
+    likedBy: zod_1.default.array(zod_1.default.string()).optional(),
 });
 exports.updateBlogSchema = zod_1.default.object({
     id: zod_1.default.string(),

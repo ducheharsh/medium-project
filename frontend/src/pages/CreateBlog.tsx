@@ -1,61 +1,65 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export function CreateBlog(){
-    const navigate = useNavigate()
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          navigate("/signin");
-        }
-      },[])
-
-    const [title, setTitle] = useState(localStorage.getItem('title') || "")
-    const [content, setContent] = useState(localStorage.getItem('content') || "")
-    const [error, setError] = useState("")
-    const [success, setSuccess] = useState("")
-
-
-
-    useEffect(() => {
-        
-        localStorage.setItem("content", content)
-    },[ content])
-
-    const createBlog = async () => {
-        try{
-
-            await axios.post("https://backend.ducheharsh.workers.dev/api/v1/blog",{
-                title,
-                content,
-            },{
-                headers:{
-                    "Authorization":localStorage.getItem("token")
-                }
-            })
-            setSuccess("Blog Created Successfully")
-            localStorage.removeItem("title")
-            localStorage.removeItem("content")
-            navigate('/blogs')
-
-        }catch(err:any){
-            setError(err.response.data.message)
-
-        }
+export function CreateBlog() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signin");
     }
-    return <div className="max-w-2/3 md:px-24 pt-10 md:pt-20 px-3">
+  }, []);
 
+  const [title, setTitle] = useState(localStorage.getItem("title") || "");
+  const [content, setContent] = useState(localStorage.getItem("content") || "");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("content", content);
+  }, [content]);
 
-
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="130.000000pt" height="130.000000pt" viewBox="0 0 1200.000000 1200.000000"
- preserveAspectRatio="xMidYMid meet" className="hidden md:block z-0 absolute right-44 top-0 opacity-30">
-
-<g transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M3335 11610 c-89 -71 -217 -245 -276 -376 -127 -284 -182 -592 -182
+  const createBlog = async () => {
+    try {
+      await axios.post(
+        "https://backend.ducheharsh.workers.dev/api/v1/blog",
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        },
+      );
+      setSuccess("Blog Created Successfully");
+      localStorage.removeItem("title");
+      localStorage.removeItem("content");
+      navigate("/blogs");
+    } catch (err: any) {
+      setError(err.response.data.message);
+    }
+  };
+  return (
+    <div className="max-w-2/3 md:px-24 pt-10 md:pt-20 px-3">
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width="130.000000pt"
+        height="130.000000pt"
+        viewBox="0 0 1200.000000 1200.000000"
+        preserveAspectRatio="xMidYMid meet"
+        className="hidden md:block z-0 absolute right-44 top-0 opacity-30"
+      >
+        <g
+          transform="translate(0.000000,1200.000000) scale(0.100000,-0.100000)"
+          fill="#000000"
+          stroke="none"
+        >
+          <path
+            d="M3335 11610 c-89 -71 -217 -245 -276 -376 -127 -284 -182 -592 -182
 -1029 0 -430 64 -892 194 -1410 103 -407 219 -704 355 -912 75 -113 244 -283
 350 -352 l81 -52 7 -152 c24 -547 135 -1094 287 -1415 90 -191 232 -373 379
 -487 51 -39 57 -48 74 -111 25 -92 99 -280 149 -379 233 -467 654 -879 1122
@@ -107,39 +111,88 @@ m719 -35 c0 -22 -2 -40 -4 -40 -5 0 -46 65 -46 74 0 3 11 6 25 6 23 0 25 -4
 m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
 29 30 32 31 49 3z m341 -443 c41 -50 81 -98 87 -106 11 -13 -5 -51 -91 -225
 -57 -115 -123 -255 -147 -312 -42 -98 -44 -101 -51 -70 -23 115 -37 725 -22
-911 l7 75 71 -91 c39 -51 104 -133 146 -182z"/>
-</g>
-</svg>
+911 l7 75 71 -91 c39 -51 104 -133 146 -182z"
+          />
+        </g>
+      </svg>
 
-<div className="flex justify-between">
-<svg onClick={()=>{
-    navigate('/blogs')
-}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" className="w-8 h-8 hover:animate-ping">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-</svg>
-<button type="button" className=" focus:outline-none text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-semibold rounded-full text-md font-sans px-6 py-2.5 me-2 mb-2 " onClick={()=>{
-    createBlog()
-}}>Publish</button>
-</div>
+      <div className="flex justify-between">
+        <svg
+          onClick={() => {
+            navigate("/blogs");
+          }}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1"
+          stroke="currentColor"
+          className="w-8 h-8 hover:animate-ping"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+          />
+        </svg>
+        <button
+          type="button"
+          className=" focus:outline-none text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-semibold rounded-full text-md font-sans px-6 py-2.5 me-2 mb-2 "
+          onClick={() => {
+            createBlog();
+          }}
+        >
+          Publish
+        </button>
+      </div>
 
+      <div className="mt-6 flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="0.8"
+          stroke="currentColor"
+          className="w-16 h-16 mt-5 text-slate-500"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
 
-        <div className="mt-6 flex">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.8" stroke="currentColor" className="w-16 h-16 mt-5 text-slate-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-</svg>
+        <input
+          placeholder={"Title"}
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+            localStorage.setItem("title", e.target.value);
+          }}
+          className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-5xl md:text-6xl font-bold"
+        ></input>
+      </div>
+      <div className="mt-6">
+        <textarea
+          placeholder="Tell your story ..."
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value),
+              localStorage.setItem("content", e.target.value);
+          }}
+          className=" w-full md:w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-xl md:text-2xl rounded-lg md:ml-20 h-screen "
+        ></textarea>
+      </div>
 
-            <input placeholder={"Title"} value={title} onChange={(e) => {setTitle(e.target.value)
-                localStorage.setItem("title", e.target.value)}
-            } className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-5xl md:text-6xl font-bold"></input>
+      {error && (
+        <div className="mt-6 p-4 bg-red-200 text-red-800 rounded-lg">
+          {error}
         </div>
-        <div className="mt-6">
-            <textarea placeholder="Tell your story ..." value={content} onChange={(e) => { setContent(e.target.value),
-                localStorage.setItem("content", e.target.value)}
-            } className=" w-full md:w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-xl md:text-2xl rounded-lg md:ml-20 h-screen "></textarea>
+      )}
+      {success && (
+        <div className="mt-6 p-4 bg-green-200 text-green-800 rounded-lg">
+          {success}
         </div>
-
-        {error && <div className="mt-6 p-4 bg-red-200 text-red-800 rounded-lg">{error}</div>}
-        {success && <div className="mt-6 p-4 bg-green-200 text-green-800 rounded-lg">{success}</div>}
+      )}
     </div>
-    
+  );
 }

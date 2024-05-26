@@ -5,18 +5,21 @@ export declare const blogSchema: z.ZodObject<{
     content: z.ZodString;
     authorName: z.ZodString;
     createdAt: z.ZodString;
+    likedBy: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
     authorName: string;
     createdAt: string;
     id?: string | undefined;
+    likedBy?: string[] | undefined;
 }, {
     title: string;
     content: string;
     authorName: string;
     createdAt: string;
     id?: string | undefined;
+    likedBy?: string[] | undefined;
 }>;
 export type blogType = z.infer<typeof blogSchema>;
 export declare const updateBlogSchema: z.ZodObject<{

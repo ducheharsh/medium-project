@@ -6,6 +6,7 @@ export const blogSchema = z.object({
     content: z.string(),
     authorName: z.string(),
     createdAt: z.string(),
+    likedBy: z.array(z.string()).optional(),
 })
 
 export type blogType = z.infer<typeof blogSchema>

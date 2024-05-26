@@ -20,22 +20,18 @@ function App() {
         <Route path='/' element={<SignIn/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/signin' element={<SignIn/>}/>
-        
-      </Routes>
-
-      
-      <Routes>
-      <Route path='/blogs' element={<>
-      <NavBar/>
-      <Blogs/>
-      </>}/>
-        <Route path='/blogs/:id' element={<>
+        <Route path='/blogs' element={<>
+          <NavBar/>
+          <Blogs/>
+          </>}/>
+        <Route path='/blogs/:id' element={
+        <>
         <NavBar/>
         <BlogPage/>
-        </>}/>
+        </>
+      }/>
         <Route path='/create' element={<CreateBlog/>}/>
       </Routes>
-
     </BrowserRouter>
    
  </>
