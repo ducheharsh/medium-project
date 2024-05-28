@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BlogPageSkeleton } from "../components/BlogPageSkeleton";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 
 interface BlogType {
   id?: number;
@@ -58,8 +59,8 @@ export function BlogPage() {
           <h4 className="block md:hidden text-lg mt-1 mb-2 font-semibold text-slate-500">
             by {blog.author?.name}
           </h4>
-          <div className="mt-4 w-auto text-slate-700 text-xl md:text-2xl font-times-light whitespace-pre-line">
-            {blog.content}
+          <div className="mt-4 w-auto text-slate-700 text-xl md:text-2xl " data-color-mode="light">
+          <MarkdownEditor.Markdown  className="text-lg font-medium" source={blog.content} />
           </div>
         </div>
 

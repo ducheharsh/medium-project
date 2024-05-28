@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export function CreateBlog() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -181,6 +182,7 @@ m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
           }}
           className=" w-full md:w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-xl md:text-2xl rounded-lg md:ml-20 h-screen "
         ></textarea>
+        <div id="preview"></div>
       </div>
 
       {error && (

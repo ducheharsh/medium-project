@@ -42,6 +42,7 @@ export function Blog({
       return 0;
     }
   }
+
   const word: any = numberOfWords(content);
   return (
     <div
