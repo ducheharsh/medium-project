@@ -1,7 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MDEditor from '@uiw/react-md-editor';
+import { getCodeString } from 'rehype-rewrite';
+import { getCommands, getExtraCommands } from "@uiw/react-md-editor/commands-cn";
+import katex from 'katex';
 
+import 'katex/dist/katex.css';
 
 export function CreateBlog() {
   const navigate = useNavigate();
@@ -172,16 +177,47 @@ m-851 -120 c12 -19 11 -23 -10 -39 -29 -23 -33 -23 -49 -4 -11 13 -9 20 10 40
           className="w-full px-4 mt-3 placeholder:font-extralight placeholder:font-times-light border-none outline-none ml-2 rounded-lg text-5xl md:text-6xl font-bold"
         ></input>
       </div>
-      <div className="mt-6">
-        <textarea
-          placeholder="Tell your story ..."
-          value={content}
-          onChange={(e) => {
-            setContent(e.target.value),
-              localStorage.setItem("content", e.target.value);
-          }}
-          className=" w-full md:w-2/3 p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-xl md:text-2xl rounded-lg md:ml-20 h-screen "
-        ></textarea>
+      <div className="mt-6" data-color-mode="light">
+
+<MDEditor
+      style={{}}
+      className=" w-full p-3 placeholder:font-extralight placeholder:font-times font-times border-none outline-none text-xl md:text-2xl rounded-lg"
+      value={content}
+      preview="edit"
+      textareaProps={
+        {placeholder: "Write your blog here"}
+      }
+      commands={[...getCommands()]}
+      extraCommands={[...getExtraCommands()]}
+      onChange={(val:any) => {setContent(val)
+        localStorage.setItem("content", val.target.value);}
+      }
+      height={2000}
+      previewOptions={{
+        components: {
+          code: ({ children = [], className, ...props }) => {
+            if (typeof children === 'string' && /^\$\$(.*)\$\$/.test(children)) {
+              const html = katex.renderToString(children.replace(/^\$\$(.*)\$\$/, '$1'), {
+                throwOnError: false,
+              });
+              return <code dangerouslySetInnerHTML={{ __html: html }} style={{ background: 'transparent' }} />;
+            }
+            const code = props.node && props.node.children ? getCodeString(props.node.children) : children;
+            if (
+              typeof code === 'string' &&
+              typeof className === 'string' &&
+              /^language-katex/.test(className.toLocaleLowerCase())
+            ) {
+              const html = katex.renderToString(code, {
+                throwOnError: false,
+              });
+              return <code style={{ fontSize: '150%' }} dangerouslySetInnerHTML={{ __html: html }} />;
+            }
+            return <code className={String(className)}>{children}</code>;
+          },
+        },
+      }}
+    />
         <div id="preview"></div>
       </div>
 

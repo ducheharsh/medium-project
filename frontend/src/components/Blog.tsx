@@ -10,6 +10,31 @@ interface BlogProps {
   likedBy?: string[];
 }
 
+function removeMarkdownSymbols(text:any) {
+  // Define regular expressions for different Markdown patterns
+  const patterns = [
+      /\*\*(.*?)\*\*/g,       // Bold (**bold**)
+      /\*(.*?)\*/g,           // Italic (*italic*)
+      /__(.*?)__/g,           // Bold (__bold__)
+      /_(.*?)_/g,             // Italic (_italic_)
+      /~~(.*?)~~/g,           // Strikethrough (~~strikethrough~~)
+      /`{1,3}(.*?)`{1,3}/g,   // Inline code and code blocks (`code` and ```code```)
+      /\[.*?\]\(.*?\)/g,      // Links [text](url)
+      /#+\s*/g,               // Headers (# Header)
+  ];
+
+  patterns.forEach(pattern => {
+      text = text.replace(pattern, '');
+  });
+
+  // Remove remaining Markdown symbols like unordered lists, ordered lists, blockquotes
+  text = text.replace(/\n- /g, '\n');          // Unordered lists (- item)
+  text = text.replace(/\n\d+\. /g, '\n');      // Ordered lists (1. item)
+  text = text.replace(/\n> /g, '\n');          // Blockquotes (> quote)
+
+  return text;
+}
+
 export function Blog({
   title,
   content,
@@ -121,7 +146,7 @@ export function Blog({
           <div className="mb-8 mt-6">
             <h1 className="text-2xl mb-3 font-bold">{title}</h1>
             <div className="font-serif w-max-2/3 font-light text-slate-800 mt-2">
-              {content.length < 100 ? content : content.slice(0, 100) + " ..."}
+              {removeMarkdownSymbols(content).length < 100 ? removeMarkdownSymbols(content) : removeMarkdownSymbols(content).slice(0, 100) + " ..."}
             </div>
           </div>
 
