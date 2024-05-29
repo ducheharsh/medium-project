@@ -53,7 +53,7 @@ export function Blog({
     >
       <div className="col-span-3 md:col-span-2">
         <div>
-          <div className="flex max-w-2/3 mt-4">
+          <div className="flex max-w-full mt-4 ">
             <div className=" inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full">
               <span className="font-medium text-gray-600 ">
                 {authorName ? authorName[0] : "J"}
@@ -61,7 +61,7 @@ export function Blog({
             </div>
             {authorName ? (
               <div className=" mx-2 mt-2 font-light  text-slate-800">
-                {authorName}
+                {authorName.split(' ')[0]}
               </div>
             ) : (
               <div className="mx-2 mt-2 font-light text-slate-800 ">
@@ -80,7 +80,7 @@ export function Blog({
                 clipRule="evenodd"
               />
             </svg>
-            <div className="mt-2 flex">{dt.toDateString()}</div>
+            <div className="mt-2 flex">{dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
             <button className="mt-2 mx-2  ">
               {name === authorName ? (
                 <svg
